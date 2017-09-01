@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm-run-all --parallel security:check open:src",
+    "start": "node ./bin/www",
+    "devstart": "npm-run-all --parallel security:check open:src",
     "open:src": "babel-node ./bin/www",
-    "devstart": "nodemon open:src",
+    "devstart2": "nodemon open:src",
     "security:check": "nsp check"
   },
   "dependencies": {
