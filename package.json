@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prestart": "babel-node ./buildScripts/startMessage.js",
     "start": "npm-run-all --parallel security:check open:src",
     "open:src": "babel-node ./bin/www",
     "devstart": "nodemon open:src",
