@@ -16,43 +16,35 @@ exports.index = function(req, res) {
     });
 };
 
-// Display list of all Authors
-exports.author_list = function(req, res) {
-
-
-};
-
-// Display detail page for a specific Author
-exports.author_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: OIG detail: ' + req.params.id);
-};
-
-// Display Author create form on GET
-exports.author_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author create GET');
-};
-
-// Handle Author create on POST
-exports.author_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED');
-};
-
-// Display Author delete form on GET
-exports.author_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED');
-};
-
-// Handle Author delete on POST
-exports.author_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED');
-};
-
-// Display Author update form on GET
-exports.author_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED');
-};
-
-// Handle Author update on POST
-exports.author_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED');
+exports.catalog_search_post = function(req, res, next){
+     //Check that the name field is not empty
+     req.checkBody('name', 'Name is required').notEmpty(); 
+     
+     //Trim and escape the name field. 
+     req.sanitize('name').escape();
+     req.sanitize('name').trim();
+     
+     //Run the validators
+     var errors = req.validationErrors();
+     
+     if (errors) {
+         //If there are errors render the form again, passing the previously entered values and errors
+         res.render('index', { title: '', candidate: candidate, errors: errors});
+     return;
+     } 
+     else {
+         // Data from form is valid.
+         //Check if Genre with same name already exists
+         oig.findOne({ 'lastname': req.body.name })
+             .exec( function(err, found_genre) {
+                  console.log('found_genre: ' + found_genre);
+                  if (err) { return next(err); }
+                  
+                  if (found_genre) { 
+                      //Genre exists, redirect to its detail page
+                      res.redirect(found_genre.url);
+                  }
+                  
+              });
+     }
 };

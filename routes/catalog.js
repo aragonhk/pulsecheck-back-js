@@ -3,10 +3,16 @@ var router = express.Router();
 
 // Require controller modules
 var oig_controller = require('../controllers/oigController');
-
-/// BOOK ROUTES ///
+var candidate_controller = require('../controllers/candidateController');
+var about_controller = require('../controllers/aboutController');
 
 /* GET catalog home page. */
 router.get('/', oig_controller.index);
+
+/* GET candidates listing. */
+router.get('/candidate/', candidate_controller.index);
+
+/* GET candidates listing. */
+router.get('/about/', about_controller.index);
 
 module.exports = router;
