@@ -10,9 +10,10 @@
     "security:check": "nsp check"
   },
   "dependencies": {
+    "async": "^2.5.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.0",
-    "async": "^2.5.0",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
