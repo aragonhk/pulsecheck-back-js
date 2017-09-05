@@ -54,23 +54,23 @@ block content
                       th Date of Birth
                       th Source  
                 tbody
-                  each candidate in candidate_oig_list
+                  each oigCand in candidate_oig_list
                     tr  
                         td 
                             button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                        td #{candidate.FIRSTNAME} 
-                        td #{candidate.MIDNAME}
-                        td #{candidate.LASTNAME}
-                        td #{candidate.dob_formatted}    
+                        td #{oigCand.FIRSTNAME} 
+                        td #{oigCand.MIDNAME}
+                        td #{oigCand.LASTNAME}
+                        td #{oigCand.dob_formatted}    
                         td OIG
-                    if candidate_sam_list
-                      each candidate in candidate_sam_list
-                        tr  
-                            td 
-                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                            td #{candidate.First} 
-                            td #{candidate.Middle}
-                            td #{candidate.Last}
-                            td N/A
-                            td SAM
+                  if candidate_sam_list
+                    each samCand in candidate_sam_list
+                      tr  
+                          td 
+                              button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
+                          td #{samCand.First} 
+                          td #{samCand.Middle}
+                          td #{samCand.Last}
+                          td N/A
+                          td SAM
             div(class="col-sm-2")
