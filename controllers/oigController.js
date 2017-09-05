@@ -16,35 +16,45 @@ exports.index = function(req, res) {
     });
 };
 
-exports.catalog_search_post = function(req, res, next){
-     //Check that the name field is not empty
-     req.checkBody('name', 'Name is required').notEmpty(); 
-     
-     //Trim and escape the name field. 
-     req.sanitize('name').escape();
-     req.sanitize('name').trim();
-     
-     //Run the validators
-     var errors = req.validationErrors();
-     
-     if (errors) {
-         //If there are errors render the form again, passing the previously entered values and errors
-         res.render('index', { title: '', candidate: candidate, errors: errors});
-     return;
-     } 
-     else {
-         // Data from form is valid.
-         //Check if Genre with same name already exists
-         oig.findOne({ 'lastname': req.body.name })
-             .exec( function(err, found_genre) {
-                  console.log('found_genre: ' + found_genre);
-                  if (err) { return next(err); }
-                  
-                  if (found_genre) { 
-                      //Genre exists, redirect to its detail page
-                      res.redirect(found_genre.url);
-                  }
-                  
-              });
-     }
+exports.candidate_search_post = function(req, res){
+    //req.checkBody('first_name', 'First name must be specified.').notEmpty(); //We won't force Alphanumeric, because people might have spaces.
+    req.checkBody('last_name', 'Family name must be specified.').notEmpty();
+    req.checkBody('last_name', 'Family name must be alphanumeric text.').isAlpha();
+    //req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true }).isDate();
+
+    req.sanitize('last_name').escape();
+    req.sanitize('first_name').escape();
+    req.sanitize('last_name').trim();
+    req.sanitize('first_name').trim();   
+    req.sanitize('date_of_birth').toDate();
+    
+    var errors = req.validationErrors();
+    console.log(errors);
+
+    if (errors) {
+        res.render('index', { title: 'error', errors: errors});
+        return;
+    } 
+    else {
+        var OIGQuery = req.body.first_name.length > 0 ? {'LASTNAME': req.body.last_name.toUpperCase(), 'FIRSTNAME':req.body.first_name.toUpperCase()} : {'LASTNAME': req.body.last_name.toUpperCase()};
+        var SAMQuery = req.body.first_name.length > 0 ? {'Last': req.body.last_name.toUpperCase(), 'First':req.body.first_name.toUpperCase()} : {'Last': req.body.last_name.toUpperCase()};
+        console.log("OIGQuery: "+ OIGQuery);
+        console.log("SAMQuery: "+ SAMQuery);
+        
+    // Data from form is valid
+        async.parallel({
+            oig_candidate: function(callback) {
+            oig.find(OIGQuery)
+                .exec(callback);
+            },
+            sam_candidate: function(callback) {
+            sam.find(SAMQuery)
+                .exec(callback);
+            },
+        }, function(err, results) {
+            if (err) { return next(err); }
+            //Successful, so render
+            res.render('index', { title: 'Results', candidate_oig_list: results.oig_candidate, candidate_sam_list: results.sam_candidate });
+        });
+    }
 };

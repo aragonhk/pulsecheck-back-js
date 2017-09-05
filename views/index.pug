@@ -9,26 +9,68 @@ block content
                   h1= title
                   h5(class="text-left") "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                   p
-                  form(class="form-inline" method='POST' action='')
-                    div(class="input-group")
-                      input(type="text" class="form-control" size="50" placeholder="Name" required)
-                      div(class="input-group-btn")
-                        button(type="button" class="btn btn-danger") Search
+                  form(class="form-horizontal" method='POST' action='')
+                    div(class="form-group")
+                      label(class="col-sm-4 control-label") Last Name
+                      div(class="col-sm-5")
+                        input(type="text" class="form-control" size="15" placeholder="Last Name" id="last_name" name="last_name") 
+                    div(class="form-group")
+                      label(class="col-sm-4 control-label") First Name
+                      div(class="col-sm-5")
+                        input(type="text" class="form-control" size="15" placeholder="First Name" id="first_name" name="first_name")
+                    div(class="form-group")   
+                      label(class="col-sm-4 control-label") Date of Birth  
+                      div(class="col-sm-5") 
+                        input(type="text" class="form-control" size="15" placeholder="Date of birth" id="date_of_birth" name="date_of_birth") 
+                    button(type="submit" class="btn btn-danger") Search
                   p
             div(class="col-sm-2")
-        div(class="row")
-          div(class="col-sm-2")
-          div(class="col-sm-8")  
-            if error
-              p Error getting dynamic content.
-            else
+        if errors
+          div(class="row")
+            div(class="col-sm-12 ")
+              ul
+                for error in errors
+                  li!= error.msg
+        if data    
+          div(class="row")
+            div(class="col-sm-2")
+            div(class="col-sm-8")  
               h5 The catalog has the following record counts:
               h5 OIG: !{data.oig_count}
               h5 SAM: !{data.sam_count}
-          div(class="col-sm-2")
-        div(class="row")
-          div(class="col-sm-12 text-left" id="dataresults") 
-            if errors 
-              ul
-                for error in errors
-                  li!= error.msg 
+              h5 OFAC: NA
+            div(class="col-sm-2")
+        if candidate_oig_list
+          div(class="row")
+            div(class="col-sm-2")
+            div(class="col-sm-8")
+              table(class="table")
+                thead  
+                  tr
+                      th Status     
+                      th First Name
+                      th Middle Name
+                      th Last Name
+                      th Date of Birth
+                      th Source  
+                tbody
+                  each candidate in candidate_oig_list
+                    tr  
+                        td 
+                            button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
+                        td #{candidate.FIRSTNAME} 
+                        td #{candidate.MIDNAME}
+                        td #{candidate.LASTNAME}
+                        td #{candidate.dob_formatted}    
+                        td OIG
+                    if candidate_sam_list
+                      each candidate in candidate_sam_list
+                        tr  
+                            td 
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
+                            td #{candidate.First} 
+                            td #{candidate.Middle}
+                            td #{candidate.Last}
+                            td N/A
+                            td SAM
+            div(class="col-sm-2")

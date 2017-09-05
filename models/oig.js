@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 var Schema = mongoose.Schema;
 
@@ -24,6 +25,12 @@ var oigSchema = Schema(
     WVRSTATE: {type: String, max: 100},    
   }
 );
+
+oigSchema
+.virtual('dob_formatted')
+.get(function () {
+  return this.DOB ? moment(this.DOB).format('YYYY-MM-DD') : '';
+});
 
 //Export model
 module.exports = mongoose.model('oig', oigSchema);
