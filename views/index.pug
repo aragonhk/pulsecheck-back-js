@@ -31,46 +31,73 @@ block content
               ul
                 for error in errors
                   li!= error.msg
-        if data    
-          div(class="row")
-            div(class="col-sm-2")
-            div(class="col-sm-8")  
-              h5 The catalog has the following record counts:
-              h5 OIG: !{data.oig_count}
-              h5 SAM: !{data.sam_count}
-              h5 OFAC: NA
-            div(class="col-sm-2")
-        if candidate_oig_list
-          div(class="row")
-            div(class="col-sm-2")
-            div(class="col-sm-8")
-              table(class="table")
-                thead  
-                  tr
-                      th Status     
-                      th First Name
-                      th Middle Name
-                      th Last Name
-                      th Date of Birth
-                      th Source  
-                tbody
-                  each oigCand in candidate_oig_list
-                    tr  
-                        td 
-                            button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                        td #{oigCand.FIRSTNAME} 
-                        td #{oigCand.MIDNAME}
-                        td #{oigCand.LASTNAME}
-                        td #{oigCand.dob_formatted}    
-                        td OIG
-                  if candidate_sam_list
-                    each samCand in candidate_sam_list
-                      tr  
-                          td 
-                              button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                          td #{samCand.First} 
-                          td #{samCand.Middle}
-                          td #{samCand.Last}
-                          td N/A
-                          td SAM
-            div(class="col-sm-2")
+        else
+          if data    
+            div(class="row")
+              div(class="col-sm-2")
+              div(class="col-sm-8")  
+                h5 The catalog has the following record counts:
+                h5 OIG: !{data.oig_count}
+                h5 SAM: !{data.sam_count}
+                h5 OFAC: !{data.sdn_count+data.nonsdn_count}
+              div(class="col-sm-2")
+          else 
+              div(class="row")
+                div(class="col-sm-2")
+                div(class="col-sm-8")
+                  if candidate_oig_list.length || candidate_sam_list.length 
+                    table(class="table")
+                      thead  
+                        tr
+                          th Status     
+                          th First Name
+                          th Middle Name
+                          th Last Name
+                          th Date of Birth
+                          th Source  
+                      tbody
+                        if candidate_oig_list
+                          each oigCand in candidate_oig_list
+                            tr  
+                              td 
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
+                              td #{oigCand.FIRSTNAME} 
+                              td #{oigCand.MIDNAME}
+                              td #{oigCand.LASTNAME}
+                              td #{oigCand.dob_formatted}    
+                              td OIG
+                        if candidate_sam_list
+                          each samCand in candidate_sam_list
+                            tr  
+                              td 
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
+                              td #{samCand.First} 
+                              td #{samCand.Middle}
+                              td #{samCand.Last}
+                              td N/A
+                              td SAM
+                  if candidate_sdn_list.length || candidate_nonsdn_list.length
+                    table(class="table")
+                      thead  
+                        tr
+                            th Status     
+                            th Name
+                            th Remark
+                            th Source  
+                      tbody
+                        if candidate_sdn_list
+                          each sdnCand in candidate_sdn_list
+                            tr  
+                              td 
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
+                              td #{sdnCand.SDN_Name} 
+                              td #{sdnCand.Remarks}
+                              td SDN
+                        if candidate_nonsdn_list
+                          each nonsdnCand in candidate_nonsdn_list
+                            tr  
+                              td 
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
+                              td #{nonsdnCand.SDN_Name} 
+                              td #{nonsdnCand.Remarks}
+                              td NON-SDN

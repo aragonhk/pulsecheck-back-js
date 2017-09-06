@@ -12,7 +12,7 @@ var catalog = require('./routes/catalog');
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://mng:lau@ds163053.mlab.com:63053/pulsedb';
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, {useMongoClient: true});
 mongoose.set('debug', true);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

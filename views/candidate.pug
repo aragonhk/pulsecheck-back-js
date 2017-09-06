@@ -4,19 +4,22 @@ block content
     div(class="jumbotron")
         div(class="container")
             div(class="row")
-                div(class="col-sm-9 text-left") 
+                div(class="col-sm-4 text-left") 
                     a(href="#" class="inactive1") All candidates | 
                     a(href="#" class="inactive2") 249 candidates   
-                div(class="col-sm-3 dropdown btn-group text-right")
-                    button(class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown") All
-                        span(class="caret")
-                    ul(class="dropdown-menu")
-                        li(role="presentation") Clear
-                        li(role="presentation") Consider
-                    input(class="btn btn-default btn-xs btn-group" placeholder="Search" size="20")
-                    button(class="btn btn-default btn-xs btn-group" type="submit")
-                        i(class="glyphicon glyphicon-search")
-                    button(class="btn btn-default btn-xs" type="button") Filter 
+                div(class="col-sm-8 text-right") 
+                    div(class="dropdown btn-group form-group") 
+                        button(class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown") All
+                            span(class="caret")
+                        ul(class="dropdown-menu")
+                            li(role="presentation") 
+                                a(href="#") Clear
+                            li(role="presentation") 
+                                a(href="#") Consider
+                        input(class="btn btn-default btn-xs btn-group" placeholder="Search" size="20")
+                        button(class="btn btn-default btn-xs btn-group" type="submit")
+                            i(class="glyphicon glyphicon-search")
+                        button(class="btn btn-default btn-xs" type="button") Filter 
             div(class="row")
                 div(class="col-sm-12") 
                     table(class="table")
