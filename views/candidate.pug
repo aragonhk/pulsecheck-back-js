@@ -43,9 +43,10 @@ block content
                                         td #{moment(new Date(candidate.updated)).format("YYYY-MM-DD")}
                                         td #{candidate.title}    
                                         td #{candidate.city}
-                            tr
-                                td(colspan="5" class="text-right") 
-                                    span(class="glyphicon glyphicon-step-backward" aria-hidden="true")   
-                                    span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
-                                    span(class="glyphicon glyphicon-chevron-right" aria-hidden="true") 
-                                    span(class="glyphicon glyphicon-step-forward" aria-hidden="true")       
+                    table(class="table table-responsive")
+                        tr
+                            td(colspan="5" class="text-right") 
+                                span(class="glyphicon glyphicon-step-backward" aria-hidden="true")   
+                                span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
+                                span(class="glyphicon glyphicon-chevron-right" aria-hidden="true") 
+                                span(class="glyphicon glyphicon-step-forward" aria-hidden="true")       
