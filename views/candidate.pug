@@ -22,16 +22,30 @@ block content
                         button(class="btn btn-default btn-xs" type="button") Filter 
             div(class="row")
                 div(class="col-sm-12") 
-                    table(class="table")
+                    table(class="table table-hover table-responsive")
                         thead  
                             tr
                                 th Status       
                                 th Name
                                 th Updated
-                                th Package
+                                th Title
                                 th Location
                         tbody
-                            tr  
-                                td 
-                                    button(type="button" class="btn btn-danger btn-sm") Consider
-                                td 
+                            if candidate_list.length
+                                each candidate in candidate_list
+                                    tr  
+                                        td
+                                            if candidate.status
+                                                button(type="button" class="btn btn-success btn-sm btn-block" onClick="return false;") Clear
+                                            else
+                                                button(type="button" class="btn btn-danger btn-sm btn-block" onClick="return false;") Consider
+                                        td #{candidate.firstName} #{candidate.lastName}
+                                        td #{moment(new Date(candidate.updated)).format("YYYY-MM-DD")}
+                                        td #{candidate.title}    
+                                        td #{candidate.city}
+                            tr
+                                td(colspan="5" class="text-right") 
+                                    span(class="glyphicon glyphicon-step-backward" aria-hidden="true")   
+                                    span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
+                                    span(class="glyphicon glyphicon-chevron-right" aria-hidden="true") 
+                                    span(class="glyphicon glyphicon-step-forward" aria-hidden="true")       

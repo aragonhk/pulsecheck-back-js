@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node ./bin/www",
-    "devstart": "npm-run-all --parallel security:check open:src",
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "devstart": "babel-node ./bin/www",
+    "start": "npm-run-all --parallel security:check open:src",
     "open:src": "babel-node ./bin/www",
     "devstart2": "nodemon open:src",
+    "generate-mock-data": "babel-node buildScripts/generateMockData",
     "security:check": "nsp check"
   },
   "dependencies": {
@@ -19,6 +21,8 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "express-validator": "^4.1.0",
+    "fs": "0.0.1-security",
+    "json-schema-faker": "^0.4.3",
     "mongoose": "^4.11.9",
     "morgan": "~1.8.1",
     "pug": "~2.0.0-beta11",

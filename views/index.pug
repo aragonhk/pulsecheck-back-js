@@ -92,7 +92,7 @@ block content
                                 button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
                               td #{sdnCand.SDN_Name} 
                               td #{sdnCand.Remarks}
-                              td SDN
+                              td OFAC SDN
                         if candidate_nonsdn_list
                           each nonsdnCand in candidate_nonsdn_list
                             tr  
@@ -100,4 +100,4 @@ block content
                                 button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
                               td #{nonsdnCand.SDN_Name} 
                               td #{nonsdnCand.Remarks}
-                              td NON-SDN
+                              td OFAC NON-SDN
