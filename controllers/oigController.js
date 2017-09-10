@@ -23,7 +23,7 @@ exports.index = function(req, res) {
     });
 };
 
-exports.candidate_search_post = function(req, res){
+exports.employee_search_post = function(req, res){
     //req.checkBody('first_name', 'First name must be specified.').notEmpty(); //We won't force Alphanumeric, because people might have spaces.
     req.checkBody('last_name', 'Last name must be specified.').notEmpty();
     req.checkBody('last_name', 'Last name must be alphanumeric text.').isAlpha();
@@ -54,26 +54,26 @@ exports.candidate_search_post = function(req, res){
             
         // Data from form is valid
             async.parallel({
-                oig_candidate: function(callback) {
+                oig_employee: function(callback) {
                 oig.find(OIGQuery)
                     .exec(callback);
                 },
-                sam_candidate: function(callback) {
+                sam_employee: function(callback) {
                 sam.find(SAMQuery)
                     .exec(callback);
                 },
-                sdn_candidate: function(callback) {
+                sdn_employee: function(callback) {
                     sdn.find(SDNQuery)
                         .exec(callback);
                     },
-                nonsdn_candidate: function(callback) {
+                nonsdn_employee: function(callback) {
                     nonsdn.find(NONSDNQuery)
                         .exec(callback);
                     },
             }, function(err, results) {
                 if (err) { return next(err); }
                 //Successful, so render
-                res.render('index', { title: 'Pulsecheck', candidate_oig_list: results.oig_candidate, candidate_sam_list: results.sam_candidate, candidate_sdn_list: results.sdn_candidate, candidate_nonsdn_list: results.nonsdn_candidate });
+                res.render('index', { title: 'Pulsecheck', employee_oig_list: results.oig_employee, employee_sam_list: results.sam_employee, employee_sdn_list: results.sdn_employee, employee_nonsdn_list: results.nonsdn_employee });
             });
         }
     });

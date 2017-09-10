@@ -4,5 +4,5 @@ var schemaData = require('../models/fakerData');
 var samples = jsf(schemaData);
 
 exports.index = function(req, res) { 
-    res.render('candidate', {title: 'Candidates', candidate_list: samples.users});
+    res.render('employee', {title: 'Employees', employee_list: samples.users});
 };

@@ -5,8 +5,8 @@ block content
         div(class="container")
             div(class="row")
                 div(class="col-sm-4 text-left") 
-                    a(href="#" class="inactive1") All candidates | 
-                    a(href="#" class="inactive2") 249 candidates   
+                    a(href="#" class="inactive1") All employees | 
+                    a(href="#" class="inactive2") 249 employees   
                 div(class="col-sm-8 text-right") 
                     div(class="dropdown btn-group form-group") 
                         button(class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown") All
@@ -19,7 +19,12 @@ block content
                         input(class="btn btn-default btn-xs btn-group" placeholder="Search" size="20")
                         button(class="btn btn-default btn-xs btn-group" type="submit")
                             i(class="glyphicon glyphicon-search")
-                        button(class="btn btn-default btn-xs" type="button") Filter 
+                    div(class="dropdown btn-group form-group")
+                        button(class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown") Filter 
+                            span(class="caret")
+                        ul(class="dropdown-menu")
+                            li(role="presentation") 
+                                a(href="#") Provider
             div(class="row")
                 div(class="col-sm-12") 
                     table(class="table table-hover table-responsive")
@@ -31,18 +36,18 @@ block content
                                 th Title
                                 th Location
                         tbody
-                            if candidate_list.length
-                                each candidate in candidate_list
+                            if employee_list.length
+                                each employee in employee_list
                                     tr  
                                         td
-                                            if candidate.status
+                                            if employee.status
                                                 button(type="button" class="btn btn-success btn-sm btn-block" onClick="return false;") Clear
                                             else
-                                                button(type="button" class="btn btn-danger btn-sm btn-block" onClick="return false;") Consider
-                                        td #{candidate.firstName} #{candidate.lastName}
+                                                button(type="button" class="btn btn-danger btn-sm btn-block" onClick="return false;") Review
+                                        td #{employee.firstName} #{employee.lastName}
                                         td 2017-09-07
-                                        td #{candidate.title}    
-                                        td #{candidate.city}
+                                        td #{employee.title}    
+                                        td #{employee.city}
                     table(class="table table-responsive")
                         tbody
                             tr

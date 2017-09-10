@@ -45,7 +45,7 @@ block content
               div(class="row")
                 div(class="col-sm-2")
                 div(class="col-sm-8")
-                  if candidate_oig_list.length || candidate_sam_list.length 
+                  if employee_oig_list.length || employee_sam_list.length 
                     table(class="table")
                       thead  
                         tr
@@ -56,27 +56,27 @@ block content
                           th Date of Birth
                           th Source  
                       tbody
-                        if candidate_oig_list
-                          each oigCand in candidate_oig_list
+                        if employee_oig_list
+                          each employee in employee_oig_list
                             tr  
                               td 
-                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                              td #{oigCand.FIRSTNAME} 
-                              td #{oigCand.MIDNAME}
-                              td #{oigCand.LASTNAME}
-                              td #{oigCand.dob_formatted}    
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Review
+                              td #{employee.FIRSTNAME} 
+                              td #{employee.MIDNAME}
+                              td #{employee.LASTNAME}
+                              td #{employee.dob_formatted}    
                               td OIG
-                        if candidate_sam_list
-                          each samCand in candidate_sam_list
+                        if employee_sam_list
+                          each employee in employee_sam_list
                             tr  
                               td 
-                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                              td #{samCand.First} 
-                              td #{samCand.Middle}
-                              td #{samCand.Last}
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Review
+                              td #{employee.First} 
+                              td #{employee.Middle}
+                              td #{employee.Last}
                               td N/A
                               td SAM
-                  if candidate_sdn_list.length || candidate_nonsdn_list.length
+                  if employee_sdn_list.length || employee_nonsdn_list.length
                     table(class="table")
                       thead  
                         tr
@@ -85,19 +85,19 @@ block content
                             th Remark
                             th Source  
                       tbody
-                        if candidate_sdn_list
-                          each sdnCand in candidate_sdn_list
+                        if employee_sdn_list
+                          each sdnEmployee in employee_sdn_list
                             tr  
                               td 
-                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                              td #{sdnCand.SDN_Name} 
-                              td #{sdnCand.Remarks}
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Review
+                              td #{sdnEmployee.SDN_Name} 
+                              td #{sdnEmployee.Remarks}
                               td OFAC SDN
-                        if candidate_nonsdn_list
-                          each nonsdnCand in candidate_nonsdn_list
+                        if employee_nonsdn_list
+                          each nonsdnEmployee in employee_nonsdn_list
                             tr  
                               td 
-                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Consider
-                              td #{nonsdnCand.SDN_Name} 
-                              td #{nonsdnCand.Remarks}
+                                button(type="button" class="btn btn-danger btn-sm" onClick="return false;") Review
+                              td #{nonsdnEmployee.SDN_Name} 
+                              td #{nonsdnEmployee.Remarks}
                               td OFAC NON-SDN
