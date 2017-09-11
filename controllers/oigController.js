@@ -19,7 +19,7 @@ exports.index = function(req, res) {
             nonsdn.count(callback);
         },
     }, function(err, results) {
-        res.render('index', { title: 'Pulsecheck', error: err, data: results });
+        res.render('index', { title: 'PulseCheck', error: err, data: results });
     });
 };
 
@@ -73,7 +73,7 @@ exports.employee_search_post = function(req, res){
             }, function(err, results) {
                 if (err) { return next(err); }
                 //Successful, so render
-                res.render('index', { title: 'Pulsecheck', employee_oig_list: results.oig_employee, employee_sam_list: results.sam_employee, employee_sdn_list: results.sdn_employee, employee_nonsdn_list: results.nonsdn_employee });
+                res.render('index', { title: 'PulseCheck', employee_oig_list: results.oig_employee, employee_sam_list: results.sam_employee, employee_sdn_list: results.sdn_employee, employee_nonsdn_list: results.nonsdn_employee });
             });
         }
     });

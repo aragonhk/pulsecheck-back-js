@@ -28,6 +28,10 @@ a.inactive2 {
   padding: 100px 25px;
 }
 
+.logon {
+  margin-top: -7px;
+}
+
 .navbar {
   margin-bottom: 0;
   background-color: #f4511e;
