@@ -32,9 +32,13 @@ a.inactive2 {
   margin-top: -7px;
 }
 
+.btn-search {
+  background-color: #4A5FB1;
+  color: white;
+}
 .navbar {
   margin-bottom: 0;
-  background-color: #f4511e;
+  background-color: #4A5FB1;
   z-index: 9999;
   border: 0;
   font-size: 12px !important;
@@ -49,7 +53,7 @@ a.inactive2 {
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
-  color: #f4511e !important;
+  color: #4A5FB1 !important;
   background-color: #fff !important;
 }
 
